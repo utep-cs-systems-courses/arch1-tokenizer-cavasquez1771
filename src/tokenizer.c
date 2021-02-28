@@ -67,6 +67,12 @@ char *copy_str(char *inStr, short len) {
 
 }
 
+int word_length(char *str) {
+
+   return word_terminator(str) - word_start(str);
+
+}
+
 char **tokenize(char* str) {
 
   int num_words = count_words(str);
@@ -103,12 +109,50 @@ void free_tokens(char **tokens) {
 
 }
 
-int menuOpt(char *str){
-
+int menuOpt(char *str) {
+  return 0;
 }
 
-int word_length(char *str) {
+int main() {
+  printf("Welcome!\n");
+  char c;
+  char sentence[100];
 
-  return word_terminator(str) - word_start(str);
+  while (1) {
+    printf("\nPlease select an option:\n");
+    printf("To input Tokens enter -> t\n");
+    //printf("To view history enter -> h\n");
+    //printf("To free history enter -> f\n");
+    printf("To quit enter -> q\n>");
+    scanf(" %c", &c);
 
+    switch (c) {
+    case 't':
+      printf("Please enter the string you would like tokeninze\n>");
+      scanf("%s",&sentence);
+      // FIX ME
+      // Start tokenizing
+      break;
+    case 'h':
+      printf("Displaying History\n");
+      // FIX ME
+      // finish history
+      break;
+    case 'f':
+      printf("Freeing all items in history\n");
+      // FIX ME
+      // finish free history
+      break;
+    case 'q':
+      printf("Bye!n");
+      goto done;
+    default:
+      printf("Unrecognized option, please try again.\n");
+    }
+  }
+
+ done:
+  return 0;
+  
 }
+ 
