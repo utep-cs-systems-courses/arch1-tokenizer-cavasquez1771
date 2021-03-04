@@ -11,25 +11,27 @@ List *init_history() {
 
 void add_history(List *list, char *str) {
   Item *item_added = (Item*)malloc(sizeof(Item));
+  Item *temp = list->root;
   int count = 1;  //count position in the list
-  int len = word_length(str);
+  int len = 0;   //length of str
 
+  for (int i = 0; str[i] != '\0'; i++)
+    len++;
+  
   item_added->str = copy_str(str, len);
   item_added->next = NULL;
 
-  if (list->root == NULL) {
+  if (temp == NULL) {
     list->root = item_added;
     item_added->id = count;
   }
   else {  //iterate to next open spot
-    Item *temp = list->root;
-
     while (temp->next != NULL) {
       temp = temp->next;
       count++;
     }
     temp->next = item_added;
-    item_added->id = count;
+    item_added->id = count + 1;
   }
 }
 
@@ -54,7 +56,6 @@ void print_history(List *list) {
     printf("%d: %s\n", temp->id, temp->str);
     temp = temp->next;
   }
-  printf("\n");
 }
 
 void free_history(List *list) {
